@@ -14,6 +14,7 @@ import { CamposModule } from '../shared/components/campos/campos.module';
     ReactiveFormsModule,
     FormsModule,
     CamposModule,
+    
   ],
   declarations: [CadastroFilmesComponent, ListagemFilmesComponent]
 })

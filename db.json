@@ -89,7 +89,16 @@
       "nota": 7.5,
       "urlIMDb": "https://www.imdb.com/title/tt6146586/",
       "genero": "Ação"
+    },
+    {
+      "titulo": "Homem-Aranha: Sem Volta Para Casa",
+      "urlFoto": "https://www.imdb.com/title/tt10872600/mediaviewer/rm1273885185/",
+      "dtLancamento": "2021-12-16T03:00:00.000Z",
+      "descricao": "Uma seqüência para o Homem-Aranha longe de casa.",
+      "nota": 6,
+      "urlIMDB": "https://www.imdb.com/title/tt10872600/?ref_=vp_vi_tt",
+      "genero": "Aventura",
+      "id": 10
     }
-  
   ]
 }

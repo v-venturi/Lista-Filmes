@@ -1,60 +1,15 @@
 <mat-toolbar class="app-title">Cadastrar Filme</mat-toolbar>
 <div class="main-div">
   <mat-card class="center width50" >
-    <form [formGroup]="cadastro" (ngSubmit) = "salvar()" (ngReset)= "reiniciarForm">
+    <form autocomplete="off" novalidate [formGroup]="cadastro" (ngSubmit) = "salvar()" (ngReset)= "reiniciarForm()">
       <mat-card-content>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Título *" name="titulo" formControlName="titulo">
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.titulo.errors && f.titulo.errors.required">Campo Obrigatório</mat-error>
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.titulo.errors && f.titulo.errors.minlength">Campo deve ter entre 2 e 256 caracteres</mat-error>
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.titulo.errors && f.titulo.errors.maxlength">Campo deve ter entre 2 e 256 caracteres</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-            <input matInput placeholder="Link Foto" name="urlFoto" formControlName="urlFoto">
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.urlFoto.errors && f.urlFoto.errors.minlength">Campo deve ter pelo menos 10 caracteres</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-            <input  matInput
-                  readonly
-                  [matDatepicker]="picker"
-                  placeholder="Data de Lançamento *"
-                  [name]="controlName"
-                  [formControlName]="controlName"
-                  (click)="picker.open()">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.dtLancamento.errors && f.dtLancamento.errors.required">Campo Obrigatório</mat-error>
-            </mat-form-field>
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="Descrição" name="descricao" formControlName="descricao"></textarea>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput
-                   type="number"
-                   min="0"
-                   max="10"
-                   step="0.5"
-                   placeholder="Nota IMDb *" 
-                   name="nota"
-                   formControlName="nota">
-                   <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.nota.errors && f.nota.errors.required">Campo Obrigatório</mat-error>
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.nota.errors && f.nota.errors.minlength">Campo deve ser entre 0 e 10</mat-error>
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.nota.errors && f.nota.errors.maxlength">Campo deve ser entre 0 e 10 caracteres</mat-error>                   
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Link IMDb" name="urlIMDB" formControlName="urlIMDB">
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.urlIMDB.errors && f.urlIMDB.errors.minlength">Campo deve ter pelo menos 10 caracteres</mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-select placeholder="Gênero *" formControlName="genero">
-              <mat-option value="Ação">Açao</mat-option>
-              <mat-option value="Aventura">Aventura</mat-option>
-              <mat-option value=">Ficção Científica">Ficção Científica</mat-option>
-              <mat-option value="Romance">Romance</mat-option>
-              <mat-option value="Terror">Terror</mat-option>
-            </mat-select>
-            <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.genero.errors && f.genero.errors.required">Campo Obrigatório</mat-error>
-          </mat-form-field>
+          <dio-input-text titulo="Título *" controlName="titulo" [formGroup]="cadastro"></dio-input-text>
+          <dio-input-text titulo="Link Foto" controlName="urlFoto" [formGroup]="cadastro"></dio-input-text>
+          <dio-input-date titulo="Data de Lançamento *" controlName="dtLancamento" [formGroup]="cadastro"></dio-input-date>
+          <dio-input-textarea titulo="Descrição *" controlName="descricao" [formGroup]="cadastro"></dio-input-textarea>
+          <dio-input-number titulo="Nota IMDB *" controlName="nota" step="0.1" [formGroup]="cadastro"></dio-input-number> 
+          <dio-input-text titulo="Link IMBD" controlName="urlIMDB" [formGroup]="cadastro"></dio-input-text>
+          <dio-input-select titulo="Gênero *" [opcoes]="generos" controlName="genero" [formGroup]="cadastro"></dio-input-select>          
         </mat-card-content>
         <mat-card-actions>
           <button type= "submit" color ="accent" mat-raised-button>Salvar</button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ValidarCamposService } from '../../shared/components/campos/validar-campos.service';
 
 @Component({
   selector: 'dio-cadastro-filmes',
@@ -9,25 +10,29 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class CadastroFilmesComponent implements OnInit {
 
   cadastro: FormGroup;
+  generos: string[];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(public validacao: ValidarCamposService,
+            private fb: FormBuilder) { }
 
   get f() {
     return this.cadastro.controls;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.cadastro = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
       urlFoto: ['', [Validators.minLength(10)]],
       dtLancamento: ['', [Validators.required]],
-      descricao: [''],
+      descricao: ['', [Validators.minLength(5)]],
       nota: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
       urlIMDB: ['' ,[Validators.minLength(10)]],
       genero: ['', [Validators.required]],
 
     });
+
+    this.generos = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror'];
 
   }
 

@@ -32,6 +32,7 @@ import { AlertaComponent } from './shared/components/alerta/alerta.component';
     AppRoutingModule
     
   ],
+  entryComponents:[AlertaComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
   bootstrap: [AppComponent]
 })

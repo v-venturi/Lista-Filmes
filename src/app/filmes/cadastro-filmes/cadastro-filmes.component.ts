@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 import { ValidarCamposService } from '../../shared/components/campos/validar-campos.service';
 import { Filme } from '../../shared/modules/filme';
 import { FilmesService } from '../../core/filmes.service';
+import { AlertaComponent } from '../../shared/components/alerta/alerta.component';
+import { Alerta } from '../../shared/models/alerta';
+
 
 @Component({
   selector: 'dio-cadastro-filmes',
@@ -11,12 +16,14 @@ import { FilmesService } from '../../core/filmes.service';
 })
 export class CadastroFilmesComponent implements OnInit {
 
-  cadastro: FormGroup;
-  generos: string[];
+  cadastro: FormGroup; 
+  generos: Array<string>;
 
   constructor(public validacao: ValidarCamposService,
-            private fb: FormBuilder,
-            private filmeService:FilmesService) { }
+              public dialog: MatDialog,
+              private fb: FormBuilder,
+              private filmeService:FilmesService,
+              private router : Router) { }
 
   get f() {
     return this.cadastro.controls;
@@ -29,7 +36,7 @@ export class CadastroFilmesComponent implements OnInit {
       urlFoto: ['', [Validators.minLength(10)]],
       dtLancamento: ['', [Validators.required]],
       descricao: ['', [Validators.minLength(5)]],
-      nota: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
+      nota: ["", [Validators.required, Validators.min(0), Validators.max(10)]],
       urlIMDB: ['' ,[Validators.minLength(10)]],
       genero: ['', [Validators.required]],
 
@@ -54,11 +61,38 @@ export class CadastroFilmesComponent implements OnInit {
   }
 
   private salvar(filme: Filme): void{
-    this.filmeService.salvar(filme).subscribe(() =>{
-      alert('Sucesso');
+    this.filmeService.salvar(filme).subscribe(() => {
+      const config = {
+        data : {
+          btnSucesso: 'Ir para a lista',
+          btnCancelar: 'Cadastrar novo filme',
+          corBtnCancelar: 'primary',
+          possuirBtnFechar: true
+
+        }as Alerta
+      }
+      const dialogRef = this.dialog.open(AlertaComponent, config);
+      dialogRef.afterClosed().subscribe((opcao: boolean) => {
+        if (opcao) {
+          this.router.navigateByUrl('filmes');
+        } else {
+          this.reiniciarForm();
+        }
+      })
     },
     () => {
-      alert('Erro ao salvar');
+      const config = {
+        data : {
+          titulo: 'Erro ao salvar seu registro',
+          descricao: 'Não conseguimos salvar seu registro, tente novamente mais tarde',
+          corBtnSucesso: 'warn',
+          btnSucesso: 'Fechar'
+        
+        } as Alerta
+      };
+      this.dialog.open(AlertaComponent, config);
+
     });
   }
-}
+  }
+

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 Sistema de filmes, com a possibilidade de cadastros, edições, listagem e visualização dos cursos de outros usuários.
 
-=======
->>>>>>> 112ebe667675ff7a4730dcc703e7bfe9476b547d
 ## Instalação
 
 1. Entre no projeto e instale as dependencias `npm install`

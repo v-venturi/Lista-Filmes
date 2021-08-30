@@ -1,5 +1,30 @@
 <mat-toolbar class="app-title">Filmes Cadastrados</mat-toolbar>
-<div class="home-content" infiniteScroll (scrolled)="onScroll()" >
+
+<mat-card class="float-left margin10 filtro-listagem" >
+  <form autocomplete="off" novalidate [formGroup]="filtrosListagem">
+    <div class="float-left width50">
+      <div class="padding10">
+        <dio-input-text titulo="Pesquise Aqui"
+                        controlName="texto"
+                        [formGroup]="filtrosListagem">
+      </dio-input-text>
+      </div>
+    </div>
+    <div class="float-left width50">
+      <div class="padding10">
+        <dio-input-select titulo="Gênero"
+                          controlName="genero"
+                          [opcoes]="generos"
+                          [formGroup]="filtrosListagem">
+       </dio-input-select>
+      </div>
+      
+    </div>
+  </form> 
+  </mat-card>
+<div class="home-content"
+     infiniteScroll (scrolled)="onScroll()"
+     *ngIf="filmes.length; else semRegistro" >
 
   <mat-card class="home-card" *ngFor = "let filme of filmes">
     <mat-card-header>
@@ -7,17 +32,18 @@
       <mat-card-title>{{filme.titulo}}</mat-card-title>
       <mat-card-subtitle>{{filme.genero}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="filme.urlFoto" alt="Imagem do Filme" >
+    <img mat-card-image [src]="filme.urlFoto || semFoto" alt="Imagem do Filme" >
     <mat-card-content>
-      <p>
-        {{filme.descricao}}
+      <p class="quebrar-linhas">
+        {{filme.descricao || 'Nenhuma descrição informada'}}
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button color="accent" mat-raised-button >Abrir</button>
+      <button color="accent" mat-raised-button (click)=abrir(filme.id)>Abrir</button>
     </mat-card-actions>
   </mat-card>
-
-
-
 </div>
+
+<ng-template #semRegistro>
+  <h1 class="full-width main-div" >Nenhum Registro Encontrado</h1>
+</ng-template>

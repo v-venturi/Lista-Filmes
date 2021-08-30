@@ -1,8 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Filme } from '../shared/modules/filme';
-
+import { Filme } from '../shared/models/filme';
+import { ConfigParams } from '../shared/models/config-params';
+import { ConfigParamsService } from './config-params.service';
 
 const url = 'http://localhost:3000/filmes/';
 
@@ -11,18 +12,27 @@ const url = 'http://localhost:3000/filmes/';
 })
 export class FilmesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private configService: ConfigParamsService) { }
 
   salvar(filme: Filme): Observable<Filme> {
     return this.http.post<Filme>(url, filme);
-
   }
 
-   listar(pagina: number, qtdPaginas: number): Observable<Filme[]> {
-     let  httpParams = new HttpParams();
-     httpParams = httpParams.set('_page', pagina.toString());
-     httpParams = httpParams.set('_limit', qtdPaginas.toString());
-     return this.http.get<Filme[]>(url, {params: httpParams} );
+  editar(filme: Filme): Observable<Filme> {
+    return this.http.put<Filme>(url + filme.id, filme);
+  }
 
-   }
+  listar(config: ConfigParams): Observable<Filme[]> {
+    const configParams = this.configService.configurarParametros(config);
+    return this.http.get<Filme[]>(url, {params: configParams});
+  }
+
+  visualizar(id: number): Observable<Filme> {
+    return this.http.get<Filme>(url + id);
+  }
+
+  excluir(id: number): Observable<void> {
+    return this.http.delete<void>(url + id);
+  }
 }

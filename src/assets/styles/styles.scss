@@ -9,6 +9,10 @@ body {
   margin: 10px auto;
 }
 
+.filtro-listagem{
+  width: calc(100% - 50px);
+}
+
 .width50 {
   width: 50%;
 }
@@ -25,4 +29,20 @@ body {
 
 .full-width {
   width: 100%;
+}
+
+.float-left{
+  float: left;
+}
+
+.margin10{
+  margin: 10px;
+}
+
+.padding10{
+  padding: 10px;
+}
+
+.quebrar-linhas{
+  white-space:pre-line; 
 }

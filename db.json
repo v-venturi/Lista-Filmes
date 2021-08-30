@@ -21,14 +21,14 @@
       "genero": "Ação"
     },
     {
-      "id": 3,
-      "titulo": "MIB: Homens de Preto III",
+      "titulo": "MIB: Homens de Preto VIII",
       "urlFoto": "https://m.media-amazon.com/images/M/MV5BMTU2NTYxODcwMF5BMl5BanBnXkFtZTcwNDk1NDY0Nw@@._V1_UX182_CR0,0,182,268_AL_.jpg",
-      "dtLancamento": "2012-25-11T03:00:00.000Z",
+      "dtLancamento": "2021-08-28T03:00:00.000Z",
       "descricao": "Agent J travels in time to M.I.B.'s early days in 1969 to stop an alien from assassinating his friend Agent K and changing history.",
       "nota": 6.8,
       "urlIMDb": "https://www.imdb.com/title/tt1409024/",
-      "genero": "Ação"
+      "genero": "Ação",
+      "id": 3
     },
     {
       "id": 4,
@@ -81,24 +81,14 @@
       "genero": "Comédia"
     },
     {
-      "id": 9,
-      "titulo": "John Wick 3: Parabellum",
+      "titulo": "John Wick 4: Parabellum",
       "urlFoto": "https://m.media-amazon.com/images/M/MV5BMDg2YzI0ODctYjliMy00NTU0LTkxODYtYTNkNjQwMzVmOTcxXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_UX182_CR0,0,182,268_AL_.jpg",
-      "dtLancamento": "2019-05-16T03:00:00.000Z",
+      "dtLancamento": "2019-05-17T03:00:00.000Z",
       "descricao": "John Wick is on the run after killing a member of the international assassin's guild, and with a $14 million price tag on his head, he is the target of hit men and women everywhere.",
       "nota": 7.5,
       "urlIMDb": "https://www.imdb.com/title/tt6146586/",
-      "genero": "Ação"
-    },
-    {
-      "titulo": "Mistério no Mediterrâneo",
-      "urlFoto": "https://m.media-amazon.com/images/M/MV5BNTA2YTI5YjUtZWI4Zi00NWQ5LWFiYmEtOTBmNTUyNDAwNjllXkEyXkFqcGdeQXVyNjIzNzM4NzA@._V1_UX182_CR0,0,182,268_AL_.jpg",
-      "dtLancamento": "2019-06-14T03:00:00.000Z",
-      "descricao": "A New York cop and his wife go on a European vacation to reinvigorate the spark in their marriage, but end up getting framed and on the run for the death of an elderly billionaire.",
-      "nota": 6,
-      "urlIMDb": "https://www.imdb.com/title/tt1618434/",
-      "genero": "Comédia",
-      "id": 10
+      "genero": "Ação",
+      "id": 9
     },
     {
       "titulo": "Star Wars: A Ascensão Skywalker",

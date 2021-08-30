@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { debounceTime} from 'rxjs/operators';
 import { FilmesService } from 'src/app/core/filmes.service';
-import { Filme } from 'src/app/shared/modules/filme';
+import { Filme } from 'src/app/shared/models/filme';
+import { ConfigParams } from '../../shared/models/config-params';
 
 @Component({
   selector: 'dio-listagem-filmes',
@@ -9,15 +13,44 @@ import { Filme } from 'src/app/shared/modules/filme';
 })
 export class ListagemFilmesComponent implements OnInit {
 
-  readonly qtdPaginas = 4;
-  filmes: Filme[] = [];
-  pagina = 0; // verificar o pq de um não estar sendo aceito apesar de 'array'
+  readonly semFoto ='https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg';
+
+  config: ConfigParams = {
+    pagina: 0,
+    limite:4,
+  };
  
-
-
-  constructor(private filmesService: FilmesService) { }
+  filmes: Filme[] = [];  
+  generos: Array<string>;
+  filtrosListagem: FormGroup;
+  
+  constructor(private filmesService: FilmesService, 
+              private fb: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
+    this.filtrosListagem = this.fb.group({
+      texto: [''], 
+      genero: [''],
+    });
+
+      this.filtrosListagem.get('texto').valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((val: string)=> {
+      this.config.pesquisa =  val;
+      this.resetarConsulta();
+
+    });
+
+    this.filtrosListagem.get('genero').valueChanges
+      .subscribe((val: string)=> {
+      this.config.campo = {tipo: 'genero', valor: val};
+      this.resetarConsulta();
+      
+    });
+
+    this.generos = ['Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror'];
+
     this.listarFilmes();
     
   }
@@ -26,11 +59,21 @@ export class ListagemFilmesComponent implements OnInit {
     this.listarFilmes();  
   }
 
+  abrir(id:number): void{
+    this.router.navigateByUrl('/filmes/' + id);
+  }
+
   private listarFilmes(): void{
-    this.pagina++;
-    this.filmesService.listar(this.pagina, this.qtdPaginas)
+    this.config.pagina++;
+    this.filmesService.listar(this.config)
     .subscribe((filmes: Filme[])=> this.filmes.push(...filmes));
 
+  }
+
+  private resetarConsulta(): void{
+    this.config.pagina = 0;
+    this.filmes = [];
+    this.listarFilmes();
   }
 
 }

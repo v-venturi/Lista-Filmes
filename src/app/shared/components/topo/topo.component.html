@@ -13,10 +13,8 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="openSideNav()">
         <mat-icon aria-label="Side nav toggle icon"> menu</mat-icon>
       </button>
-      <span>Minha Lista de Filmes</span>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
+      <p class= alinhaCentro >Minha Lista de Filmes</p>
+     
     </mat-toolbar>
 
     <div class="app-content">
@@ -29,13 +27,3 @@
 </mat-sidenav-container>
 
 
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>account_circle</mat-icon>
-    <span>Conta</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>settings</mat-icon>
-    <span>Configurações</span>
-  </button>
-</mat-menu>

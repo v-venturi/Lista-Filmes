@@ -6,32 +6,28 @@ import { InputDateComponent } from './input-date/input-date.component';
 import { InputTextareaComponent } from './input-textarea/input-textarea.component';
 import { InputSelectComponent } from './input-select/input-select.component';
 import { MaterialModule } from '../../material/material.module';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { ValidarCamposService } from './validar-campos.service';
-
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     InputTextComponent,
     InputNumberComponent,
-    InputDateComponent, 
+    InputDateComponent,
     InputTextareaComponent,
-    InputSelectComponent],
-
+    InputSelectComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule,  
+    FormsModule
   ],
   exports: [
-     InputTextComponent,
-     InputNumberComponent,
-     InputDateComponent, 
-     InputTextareaComponent,
-     InputSelectComponent,
+    InputTextComponent,
+    InputNumberComponent,
+    InputDateComponent,
+    InputTextareaComponent,
+    InputSelectComponent
   ]
 })
 export class CamposModule { }

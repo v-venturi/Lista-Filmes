@@ -1,22 +1,14 @@
-Sistema de filmes, com a possibilidade de cadastros, edições, listagem e visualização dos cursos de outros usuários.
 
-## Instalação
+## Sistema de filmes, com a possibilidade de cadastros, edições, consultas e exclusões.
+#Angular
+#TypeScript
 
-1. Entre no projeto e instale as dependencias `npm install`
 
-## Ambiente Local
 
-Execute `ng serve` para que o projeto suba localmente. Acesse a url `http://localhost:4200/`. O projeto já está com reload automático conforme as alterações que você realizar no código
 
-## Simulando o Back-end
+![Capturar](https://user-images.githubusercontent.com/81478853/131280145-1bc4bc5b-2e8d-43fa-bf28-102ceae36dc0.PNG)
+![Capturar1](https://user-images.githubusercontent.com/81478853/131280150-8df09856-6e98-4138-8fb0-e6cdb9437003.PNG)
+![Capturar2](https://user-images.githubusercontent.com/81478853/131280151-2bfc84bf-b023-40b0-8af5-96ad8d19423b.PNG)
 
-Execute `npm install -g json-server` para instalar globalmente o servidor json. Após a instalação entre na pasta do projeto e execute `json-server --watch db.json`, com isso um servidor será inicializado na url `http://localhost:3000/`, após a inicialização sera possível realizar requisições http.
 
-## Gerendo componente
-
-Execute `ng generate component nome-do-componente` para criar um novo componente. Você também pode usuar `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Execute `ng build` para gerar o compilado do projeto. O projeto vai ser criado dentro do diretório `dist/`. Adicionar `--prod` junto comando de build para gerar minificado e pronto para o ambiente de produção.
 
